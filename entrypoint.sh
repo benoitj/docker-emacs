@@ -39,7 +39,7 @@ enable_sudo() {
         test -n "$username" || exit "$exitCode"
 
         test -f "/etc/sudoers.d/$username" ||
-                (echo "emacs ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/emacs &&
+                (echo "$username ALL=(ALL) NOPASSWD: ALL" >"/etc/sudoers.d/$username" &&
                         echo "done enabling sudo for user $username")
         incExitCode
 
