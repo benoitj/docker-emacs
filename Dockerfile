@@ -12,6 +12,7 @@ RUN pacman -Sy --noconfirm && \
 
 RUN pacman -S --noconfirm \
     curl \
+    cmake \
     ditaa \
     fakeroot \
     gcc \
@@ -21,6 +22,7 @@ RUN pacman -S --noconfirm \
     make \
     plantuml \
     plantuml-ascii-math \
+    stow \
     sudo \
     unzip \
     wget \
