@@ -1,0 +1,21 @@
+FROM benoitj/docker-emacs:latest
+
+LABEL maintainer="Benoit Joly <benoit@benoitj.ca>"
+
+RUN pacman -S --noconfirm \
+    ditaa \
+    graphviz \
+    jdk11-openjdk \
+    plantuml \
+    plantuml-ascii-math \
+    stow
+
+ENV USER="benoit"
+
+WORKDIR /home/benoit
+
+RUN git clone https://github.com/benoitj/dotfiles src/dotfiles && \
+    cd src/dotfiles && \
+    ./install.sh
+
+VOLUME /home/benoit

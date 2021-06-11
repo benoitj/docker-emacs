@@ -11,9 +11,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and Push to Docker Hub
+      - name: Build and Push docker-emacs
         uses: docker/build-push-action@v2
         with:
           context: .
+          push: true
+          tags: benoitj/docker-emacs:latest
+
+      - name: Build and Push docker-emacs-dotfiles
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.dotfiles
           push: true
           tags: benoitj/docker-emacs:latest
