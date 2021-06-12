@@ -5,7 +5,7 @@ services:
     image: benoitj/docker-emacs-dotfiles:latest
     stdin_open: true
     tty: true
-    #    hostname: "$HOSTNAME" \
+    hostname: milhouse
     environment:
       - USERNAME=benoit
       - DISPLAY="$DISPLAY"
