@@ -72,22 +72,23 @@ fix_ownership() {
         incExitCode
 }
 
-#create_user() {
-#        test ! -d "$HOME/src/dotfiles" &&
-#                git clone https://github.com/benoitj/dotfiles src/dotfiles &&
-#                cd src/dotfiles &&
-#                git submodule update &&
-#                ./install.sh
-#}
+run_init() {
+        test -d "/init.d" &&
+                for init_file in /init.d/*; do
+                        echo "init: $init_file"
+                        "$init_file"
+                done
+}
 
-create_group "$GID" "$GROUP"
-create_user "$UID" "$USER" "$GROUP"
-enable_sudo "$USER"
-mkdir_xdg "$USER" "$GROUP"
-fix_ownership "$USER" "$GROUP"
+create_group "$GROUPID" "$GROUPNAME"
+create_user "$USERID" "$USERNAME" "$GROUPNAME"
+enable_sudo "$USERNAME"
+mkdir_xdg "$USERNAME" "$GROUPNAME"
+fix_ownership "$USERNAME" "$GROUPNAME"
+run_init
 
 # solve a warning when starting emacs
 export NO_AT_BRIDGE=1
 
-cd "/home/$USER"
-su-exec "$USER" "$@"
+cd "/home/$USERNAME"
+su-exec "$USERNAME" "$@"

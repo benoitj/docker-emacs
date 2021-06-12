@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  docker-emacs:
+    image: benoitj/docker-emacs-dotfiles:latest
+    stdin_open: true
+    tty: true
+    #    hostname: "$HOSTNAME" \
+    environment:
+      - USERNAME=benoit
+      - DISPLAY="$DISPLAY"
+    volumes:
+      - ./init.d:/init.d
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${HOME}/.Xauthority:/home/benoit/.Xauthority

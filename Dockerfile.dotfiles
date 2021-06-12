@@ -10,12 +10,9 @@ RUN pacman -S --noconfirm \
     plantuml-ascii-math \
     stow
 
-ENV USER="benoit"
+ENV USERNAME="benoit"
+
+COPY init.d /init.d
 
 WORKDIR /home/benoit
-
-RUN git clone https://github.com/benoitj/dotfiles src/dotfiles && \
-    cd src/dotfiles && \
-    ./install.sh
-
 VOLUME /home/benoit

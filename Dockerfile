@@ -2,7 +2,8 @@ FROM archlinux:latest
 
 LABEL maintainer="Benoit Joly <benoit@benoitj.ca>"
 
-RUN pacman -Syu --noconfirm \
+RUN echo 'Server = https://mirror.csclub.uwaterloo.ca/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist && \
+    pacman -Syu --noconfirm \
     bc \
     curl \
     cmake \
@@ -33,10 +34,10 @@ RUN git clone https://github.com/ncopa/su-exec.git /tmp/su-exec \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-ENV USER="emacs" \
-    UID="1000" \
-    GROUP="emacs" \
-    GID="1000"
+ENV USERNAME="emacs" \
+    USERID="1000" \
+    GROUPNAME="emacs" \
+    GROUPID="1000"
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["emacs"]
