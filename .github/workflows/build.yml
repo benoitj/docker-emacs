@@ -24,4 +24,4 @@ jobs:
           context: .
           file: Dockerfile.dotfiles
           push: true
-          tags: benoitj/docker-emacs:latest
+          tags: benoitj/docker-emacs-dotfiles:latest
